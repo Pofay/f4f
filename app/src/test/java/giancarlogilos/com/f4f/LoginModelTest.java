@@ -26,8 +26,9 @@ public class LoginModelTest {
         LoginModel model = new LoginModel(repository);
 
         boolean actual =
-                model.verifyCredentials("VALID_USERNAME", "VALID_PASSWORD");
+                model.verifyCredentials(credentials.username,credentials.password);
 
         assertTrue(actual);
     }
+
 }

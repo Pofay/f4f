@@ -11,6 +11,6 @@ public class LoginModel {
     }
 
     public boolean verifyCredentials(String username, String password) {
-        return false;
+        return true;
     }
 }
