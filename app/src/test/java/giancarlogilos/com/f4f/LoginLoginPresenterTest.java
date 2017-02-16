@@ -47,7 +47,6 @@ public class LoginLoginPresenterTest {
         LoginView view = mock(LoginView.class);
         LoginPresenter presenter = new LoginPresenter(model, view);
 
-
         verifyNoMoreInteractions(view);
     }
 
@@ -61,6 +60,18 @@ public class LoginLoginPresenterTest {
         presenter.onVerifyCredentials("INVALID_USERNAME", "INVALID_PASSWORD");
 
         verify(view).showCredentialsAreInvalid();
+    }
+
+
+    @Test
+    public void ItShouldTellTheViewWhenEnteredCredentialsAreValid() {
+        LoginModel model = new LoginModel();
+        LoginView view = mock(LoginView.class);
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        presenter.onVerifyCredentials("VALID_USERNAME", "VALID_PASSWORD");
+
+        verify(view).showCredentialsAreValid();
     }
 }
 
