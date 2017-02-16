@@ -39,7 +39,7 @@ public class LoginActivityAcceptanceTest {
     }
 
     @Test
-    public void ItShouldMoveToTheVendorFinderWhenCredentialsAreAllowed() {
+    public void ItShouldMoveToUserProfileOnLoggingIn() {
         loginRule.launchActivity(new Intent());
 
         String validUsername = "VALID_USERNAME";
@@ -50,7 +50,7 @@ public class LoginActivityAcceptanceTest {
 
         onView(withId(R.id.login_button)).perform(click());
 
-        onView(withId(R.id.vendor_finder_text)).check(matches(withText("VENDOR FINDER")));
+        onView(withId(R.id.profile_view)).check(matches(withText("PROFILE")));
     }
 
     private EditText usernameField() {
