@@ -16,7 +16,9 @@ public class LoginPresenter {
     }
 
     public void onVerifyCredentials(String username, String password) {
-        view.showCredentialsAreValid();
-        view.showCredentialsAreInvalid();
+        if ((username == "VALID_USERNAME") && (password == "VALID_PASSWORD"))
+            view.showCredentialsAreValid();
+        else
+            view.showCredentialsAreInvalid();
     }
 }

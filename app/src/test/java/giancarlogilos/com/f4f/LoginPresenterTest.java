@@ -8,6 +8,7 @@ import core.LoginPresenter;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -72,6 +73,17 @@ public class LoginPresenterTest {
         presenter.onVerifyCredentials("VALID_USERNAME", "VALID_PASSWORD");
 
         verify(view).showCredentialsAreValid();
+    }
+
+    @Test
+    public void ItShouldNotShowInvalidCredentialsWhenCredentialsAreValid() {
+        LoginModel model = new LoginModel();
+        LoginView view = mock(LoginView.class);
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        presenter.onVerifyCredentials("VALID_USERNAME", "VALID_PASSWORD");
+
+        verify(view, never()).showCredentialsAreInvalid();
     }
 }
 
