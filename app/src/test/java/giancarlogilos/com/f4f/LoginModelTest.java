@@ -6,6 +6,7 @@ import core.LoginModel;
 import core.UserCredentials;
 import core.UserRepository;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class LoginModelTest {
 
     @Test
-    public void ItShouldCommunicateToTheRepository() {
+    public void ItShouldReturnATrueForValidUserCredential() {
         UserRepository repository = mock(UserRepository.class);
         UserCredentials credentials =
                 new UserCredentials("VALID_USERNAME", "VALID_PASSWORD");
@@ -26,9 +27,24 @@ public class LoginModelTest {
         LoginModel model = new LoginModel(repository);
 
         boolean actual =
-                model.verifyCredentials(credentials.username,credentials.password);
+                model.verifyCredentials(credentials.username, credentials.password);
 
         assertTrue(actual);
     }
+
+    @Test
+    public void ItShouldReturnAFalseForAnInvalidUserCredential() {
+        UserRepository repository = mock(UserRepository.class);
+        UserCredentials credentials =
+                new UserCredentials("INVALID_USERNAME", "INVALID_PASSWORD");
+        when(repository.verifyCredentials(credentials)).thenReturn(false);
+        LoginModel model = new LoginModel(repository);
+
+        boolean actual =
+                model.verifyCredentials(credentials.username, credentials.password);
+
+        assertFalse(actual);
+    }
+
 
 }
