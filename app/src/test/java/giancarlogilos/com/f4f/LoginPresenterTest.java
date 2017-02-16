@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  * Created by pofay on 2/16/17.
  */
 
-public class LoginLoginPresenterTest {
+public class LoginPresenterTest {
 
     @Test
     public void ItsInvariantsMustBeSatisfied() {
