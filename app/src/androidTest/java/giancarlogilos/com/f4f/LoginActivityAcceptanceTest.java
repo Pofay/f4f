@@ -32,15 +32,15 @@ public class LoginActivityAcceptanceTest {
     }
 
     private EditText usernameField() {
-        return null;
+        return (EditText) loginRule.getActivity().findViewById(R.id.username_field);
     }
 
-    private EditText loginButton() {
-        return null;
+    private Button loginButton() {
+        return (Button) loginRule.getActivity().findViewById(R.id.login_button);
     }
 
     private EditText passwordField() {
-        return null;
+        return (EditText) loginRule.getActivity().findViewById(R.id.password_field);
     }
 
 }
