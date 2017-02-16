@@ -4,16 +4,17 @@ import org.junit.Test;
 
 import core.LoginModel;
 import core.LoginView;
-import core.Presenter;
+import core.LoginPresenter;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by pofay on 2/16/17.
  */
 
-public class LoginPresenterTest {
+public class LoginLoginPresenterTest {
 
     @Test
     public void ItsInvariantsMustBeSatisfied() {
@@ -21,7 +22,7 @@ public class LoginPresenterTest {
         LoginView view = null;
 
         try {
-            new Presenter(model, view);
+            new LoginPresenter(model, view);
             fail("Invariants must be satisfied");
         } catch (NullPointerException e) {
 
@@ -32,14 +33,23 @@ public class LoginPresenterTest {
     public void ViewMustNotBeNull() {
         LoginModel model = new LoginModel();
         LoginView view = null;
-
         try {
-            new Presenter(model, view);
+            new LoginPresenter(model, view);
             fail("Invariants must be satisfied");
         } catch (NullPointerException e) {
-
         }
     }
 
+
+    @Test
+    public void ItShouldTellTheViewWhenCredentialsAreInvalid() {
+        LoginModel model = new LoginModel();
+        LoginView view = mock(LoginView.class);
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+        presenter.onVerifyCredentials("INVALID_USERNAME", "INVALID_PASSWORD");
+
+        verify(view).showCredentialsAreInvalid();
+    }
 }
 
