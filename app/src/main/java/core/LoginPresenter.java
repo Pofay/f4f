@@ -15,9 +15,7 @@ public class LoginPresenter {
         this.view = view;
     }
 
-    public void onVerifyCredentials(String invalid_username, String invalid_password) {
-
+    public void onVerifyCredentials(String username, String password) {
         view.showCredentialsAreInvalid();
-
     }
 }
