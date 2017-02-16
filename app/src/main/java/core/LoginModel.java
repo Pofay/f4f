@@ -6,5 +6,11 @@ package core;
 public class LoginModel {
 
 
+    public LoginModel(UserRepository repository) {
 
+    }
+
+    public boolean verifyCredentials(String username, String password) {
+        return false;
+    }
 }

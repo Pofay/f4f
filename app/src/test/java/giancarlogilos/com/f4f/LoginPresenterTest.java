@@ -5,9 +5,11 @@ import org.junit.Test;
 import core.LoginModel;
 import core.LoginView;
 import core.LoginPresenter;
+import core.UserRepository;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -33,7 +35,8 @@ public class LoginPresenterTest {
 
     @Test
     public void ViewMustNotBeNull() {
-        LoginModel model = new LoginModel();
+        UserRepository repository = mock(UserRepository.class);
+        LoginModel model = new LoginModel(repository);
         LoginView view = null;
         try {
             new LoginPresenter(model, view);
@@ -44,7 +47,8 @@ public class LoginPresenterTest {
 
     @Test
     public void ItShouldNotInvokeAnyLogicOnConstruction() {
-        LoginModel model = new LoginModel();
+        UserRepository repository = mock(UserRepository.class);
+        LoginModel model = new LoginModel(repository);
         LoginView view = mock(LoginView.class);
         LoginPresenter presenter = new LoginPresenter(model, view);
 
@@ -54,7 +58,8 @@ public class LoginPresenterTest {
 
     @Test
     public void ItShouldTellTheViewWhenCredentialsAreInvalid() {
-        LoginModel model = new LoginModel();
+        UserRepository repository = mock(UserRepository.class);
+        LoginModel model = new LoginModel(repository);
         LoginView view = mock(LoginView.class);
         LoginPresenter presenter = new LoginPresenter(model, view);
 
@@ -66,7 +71,8 @@ public class LoginPresenterTest {
 
     @Test
     public void ItShouldTellTheViewWhenEnteredCredentialsAreValid() {
-        LoginModel model = new LoginModel();
+        UserRepository repository = mock(UserRepository.class);
+        LoginModel model = new LoginModel(repository);
         LoginView view = mock(LoginView.class);
         LoginPresenter presenter = new LoginPresenter(model, view);
 
@@ -77,7 +83,8 @@ public class LoginPresenterTest {
 
     @Test
     public void ItShouldNotShowInvalidCredentialsWhenCredentialsAreValid() {
-        LoginModel model = new LoginModel();
+        UserRepository repository = mock(UserRepository.class);
+        LoginModel model = new LoginModel(repository);
         LoginView view = mock(LoginView.class);
         LoginPresenter presenter = new LoginPresenter(model, view);
 
