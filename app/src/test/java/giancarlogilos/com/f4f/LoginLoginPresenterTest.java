@@ -9,6 +9,7 @@ import core.LoginPresenter;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Created by pofay on 2/16/17.
@@ -38,6 +39,16 @@ public class LoginLoginPresenterTest {
             fail("Invariants must be satisfied");
         } catch (NullPointerException e) {
         }
+    }
+
+    @Test
+    public void ItShouldNotInvokeAnyLogicOnConstruction() {
+        LoginModel model = new LoginModel();
+        LoginView view = mock(LoginView.class);
+        LoginPresenter presenter = new LoginPresenter(model, view);
+
+
+        verifyNoMoreInteractions(view);
     }
 
 
