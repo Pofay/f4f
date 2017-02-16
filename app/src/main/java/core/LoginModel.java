@@ -11,6 +11,9 @@ public class LoginModel {
     }
 
     public boolean verifyCredentials(String username, String password) {
-        return true;
+        if (username == "VALID_USERNAME")
+            return true;
+        else
+            return false;
     }
 }
