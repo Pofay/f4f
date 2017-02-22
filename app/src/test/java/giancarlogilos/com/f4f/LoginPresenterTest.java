@@ -19,7 +19,9 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  */
 
 public class LoginPresenterTest {
-    
+
+    @Test
+    public void ItCreatesANewUserSession
 }
 
 
