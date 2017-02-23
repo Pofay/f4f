@@ -14,13 +14,12 @@ public class LoginModel {
     }
 
     public void createNewSession(UserCredentials credentials, Action onSuccess, GenericAction<String> onFailure) {
-        User user = gateway.getUserWithCredentials(credentials);
-        if (user != null){
-            sessionManager.createSessionFor(user);
+        Maybe<User> user = gateway.getUserWithCredentials(credentials);
+        if (user.hasValue()) {
+            sessionManager.createSessionFor(user.Value());
             onSuccess.execute();
-        }
-        else{
+        } else
             onFailure.execute("Invalid Username or Password");
-        }
     }
 }
+

@@ -1,5 +1,6 @@
 package giancarlogilos.com.f4f;
 
+import core.Maybe;
 import core.User;
 import core.UserCredentials;
 import core.UserGateway;
@@ -15,7 +16,7 @@ public class MockUserGatewayBuilder {
 
     private UserGateway gateway;
     private UserCredentials credentials;
-    private User user;
+    private Maybe<User> user;
 
     public MockUserGatewayBuilder(){
         this.gateway = mock(UserGateway.class);
@@ -26,7 +27,7 @@ public class MockUserGatewayBuilder {
         return this;
     }
 
-    public MockUserGatewayBuilder toReturn(User user){
+    public MockUserGatewayBuilder toReturn(Maybe<User> user){
         this.user = user;
         return this;
     }

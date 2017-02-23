@@ -5,7 +5,9 @@ import org.junit.Test;
 import core.LoginModel;
 import core.LoginView;
 import core.LoginPresenter;
+import core.None;
 import core.SessionManager;
+import core.Some;
 import core.User;
 import core.UserGateway;
 
@@ -24,7 +26,7 @@ public class LoginPresenterTest {
         User expectedUser = new User();
         UserGateway stubGateway = new MockUserGatewayBuilder()
                 .setupWithCredentials("USERNAME", "PASSWORD")
-                .toReturn(expectedUser)
+                .toReturn(new Some<>(expectedUser))
                 .build();
         SessionManager mockSessionManager = mock(SessionManager.class);
         LoginPresenter sut = new LoginPresenterBuilder()
@@ -40,7 +42,7 @@ public class LoginPresenterTest {
     public void ItTellsViewToGoToProfileWhenLoginIsSuccessful() {
         UserGateway stubGateway = new MockUserGatewayBuilder()
                 .setupWithCredentials("VALID_USERNAME", "VALID_PASSWORD")
-                .toReturn(new User())
+                .toReturn(new Some<>(new User()))
                 .build();
         LoginView view = mock(LoginView.class);
         LoginPresenter sut = new LoginPresenterBuilder()
@@ -55,7 +57,10 @@ public class LoginPresenterTest {
 
     @Test
     public void ItTellsViewToDisplayFailureMessageWhenLoginIsUnsuccesful() {
-        UserGateway stubGateway = mock(UserGateway.class);
+        UserGateway stubGateway = new MockUserGatewayBuilder()
+                .setupWithCredentials("INVALID_USERNAME", "INVALID_PASSWORD")
+                .toReturn(new None<>())
+                .build();
         LoginView view = mock(LoginView.class);
         LoginPresenter sut = new LoginPresenterBuilder()
                 .withModel(new LoginModel(mock(SessionManager.class), stubGateway))

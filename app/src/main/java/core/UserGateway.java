@@ -5,5 +5,5 @@ package core;
  */
 public interface UserGateway {
 
-    User getUserWithCredentials(UserCredentials credentials);
+    Maybe<User> getUserWithCredentials(UserCredentials credentials);
 }
