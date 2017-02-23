@@ -9,7 +9,17 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class LoginActivity extends AppCompatActivity {
+import core.InMemoryUserGateway;
+import core.LoginModel;
+import core.LoginPresenter;
+import core.LoginView;
+
+public class LoginActivity extends AppCompatActivity implements LoginView {
+
+    private InMemoryUserGateway gateway;
+    private AndroidSessionManager sessionManager;
+    private LoginModel model;
+    private LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +28,11 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        gateway = new InMemoryUserGateway();
+        sessionManager = new AndroidSessionManager();
+        model = new LoginModel(sessionManager, gateway);
+        presenter = new LoginPresenter(model, this);
     }
 
     @Override
@@ -40,5 +55,15 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void goToProfile() {
+
+    }
+
+    @Override
+    public void showFailureMessage(String message) {
+
     }
 }
