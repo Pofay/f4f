@@ -29,9 +29,9 @@ public class LoginPresenterTest {
                 .toReturn(expectedUser)
                 .build();
         SessionManager mockSessionManager = mock(SessionManager.class);
-        LoginModel model = new LoginModel(mockSessionManager, stubGateway);
-        LoginView dummyView = mock(LoginView.class);
-        LoginPresenter sut = new LoginPresenter(model, dummyView);
+        LoginPresenter sut = new LoginPresenterBuilder()
+                .withModel(new LoginModel(mockSessionManager, stubGateway))
+                .build();
 
         sut.onLogin("USERNAME", "PASSWORD");
 
@@ -45,10 +45,11 @@ public class LoginPresenterTest {
                 .setupWithCredentials("VALID_USERNAME", "VALID_PASSWORD")
                 .toReturn(expectedUser)
                 .build();
-        SessionManager mockSessionManager = mock(SessionManager.class);
-        LoginModel model = new LoginModel(mockSessionManager, stubGateway);
         LoginView view = mock(LoginView.class);
-        LoginPresenter sut = new LoginPresenter(model, view);
+        LoginPresenter sut = new LoginPresenterBuilder()
+                .withModel(new LoginModel(mock(SessionManager.class), stubGateway))
+                .withView(view)
+                .build();
 
         sut.onLogin("VALID_USERNAME", "VALID_PASSWORD");
 
