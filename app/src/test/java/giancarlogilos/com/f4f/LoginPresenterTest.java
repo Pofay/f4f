@@ -55,10 +55,7 @@ public class LoginPresenterTest {
 
     @Test
     public void ItTellsViewToDisplayFailureMessageWhenLoginIsUnsuccesful() {
-        UserGateway stubGateway = new MockUserGatewayBuilder()
-                .setupWithCredentials("INVALID_USERNAME", "INVALID_PASSWORD")
-                .toReturn(new User())
-                .build();
+        UserGateway stubGateway = mock(UserGateway.class);
         LoginView view = mock(LoginView.class);
         LoginPresenter sut = new LoginPresenterBuilder()
                 .withModel(new LoginModel(mock(SessionManager.class), stubGateway))

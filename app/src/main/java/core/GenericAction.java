@@ -5,7 +5,7 @@ package core;
  */
 
 @FunctionalInterface
-public interface Action {
+public interface GenericAction<T>{
 
-    void execute();
+    void execute(T message);
 }
