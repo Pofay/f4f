@@ -5,15 +5,16 @@ package core;
  */
 public class LoginModel {
 
+    private final UserGateway gateway;
+    private final SessionManager sessionManager;
 
-    public LoginModel(UserRepository repository) {
-
+    public LoginModel(SessionManager sessionManager, UserGateway gateway) {
+        this.sessionManager = sessionManager;
+        this.gateway = gateway;
     }
 
-    public boolean verifyCredentials(String username, String password) {
-        if (username == "VALID_USERNAME")
-            return true;
-        else
-            return false;
+    public void createNewSession(UserCredentials credentials){
+        User user = gateway.getUserWithCredentials(credentials);
+        sessionManager.createSessionFor(user);
     }
 }

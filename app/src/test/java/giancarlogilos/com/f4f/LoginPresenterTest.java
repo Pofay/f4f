@@ -5,14 +5,15 @@ import org.junit.Test;
 import core.LoginModel;
 import core.LoginView;
 import core.LoginPresenter;
-import core.UserRepository;
+import core.SessionManager;
+import core.User;
+import core.UserCredentials;
+import core.UserGateway;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by pofay on 2/16/17.
@@ -21,7 +22,25 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 public class LoginPresenterTest {
 
     @Test
-    public void ItCreatesANewUserSession
+    public void ItCreatesASessionOnLogin(){
+        User expectedUser = new User();
+        UserGateway stubGateway = setupGatewayToReturn(expectedUser);
+        SessionManager mockSessionManager = mock(SessionManager.class);
+        LoginModel model = new LoginModel(mockSessionManager, stubGateway);
+        LoginView dummyView = mock(LoginView.class);
+        LoginPresenter sut = new LoginPresenter(model, dummyView);
+
+        sut.onLogin("USERNAME", "PASSWORD");
+
+        verify(mockSessionManager).createSessionFor(expectedUser);
+    }
+
+    private UserGateway setupGatewayToReturn(User expectedUser) {
+        UserGateway stubGateway = mock(UserGateway.class);
+        UserCredentials credentials = new UserCredentials("USERNAME" , "PASSWORD");
+        when(stubGateway.getUserWithCredentials(credentials)).thenReturn(expectedUser);
+        return stubGateway;
+    }
 }
 
 

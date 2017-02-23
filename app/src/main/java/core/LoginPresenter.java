@@ -5,6 +5,7 @@ package core;
  */
 public class LoginPresenter {
     private final LoginView view;
+    private final LoginModel model;
 
     public LoginPresenter(LoginModel model, LoginView view) {
         if (model == null)
@@ -12,13 +13,11 @@ public class LoginPresenter {
 
         if (view == null)
             throw new NullPointerException();
+        this.model = model;
         this.view = view;
     }
 
-    public void onVerifyCredentials(String username, String password) {
-        if ((username == "VALID_USERNAME") && (password == "VALID_PASSWORD"))
-            view.showCredentialsAreValid();
-        else
-            view.showCredentialsAreInvalid();
+    public void onLogin(String username, String password) {
+        model.createNewSession(new UserCredentials(username,password));
     }
 }
