@@ -15,6 +15,7 @@ public class LoginPresenter {
             throw new NullPointerException();
         this.model = model;
         this.view = view;
+        view.goToProfile();
     }
 
     public void onLogin(String username, String password) {

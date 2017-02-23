@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class LoginPresenterTest {
 
     @Test
-    public void ItCreatesASessionOnLogin(){
+    public void ItTellsTheSessionManagerToCreateASessionOnLogin() {
         User expectedUser = new User();
         UserGateway stubGateway = setupGatewayToReturn(expectedUser);
         SessionManager mockSessionManager = mock(SessionManager.class);
@@ -37,10 +37,28 @@ public class LoginPresenterTest {
 
     private UserGateway setupGatewayToReturn(User expectedUser) {
         UserGateway stubGateway = mock(UserGateway.class);
-        UserCredentials credentials = new UserCredentials("USERNAME" , "PASSWORD");
+        UserCredentials credentials = new UserCredentials("USERNAME", "PASSWORD");
         when(stubGateway.getUserWithCredentials(credentials)).thenReturn(expectedUser);
         return stubGateway;
     }
+
+    @Test
+    public void ItTellsViewToGoToProfileWhenLoginIsSuccessful() {
+        User expectedUser = new User();
+        UserGateway stubGateway = mock(UserGateway.class);
+        UserCredentials credentials = new UserCredentials("VALID_USERNAME", "VALID_PASSWORD");
+        when(stubGateway.getUserWithCredentials(credentials)).thenReturn(expectedUser);
+        SessionManager mockSessionManager = mock(SessionManager.class);
+        LoginModel model = new LoginModel(mockSessionManager, stubGateway);
+        LoginView view = mock(LoginView.class);
+        LoginPresenter sut = new LoginPresenter(model, view);
+
+        sut.onLogin("VALID_USERNAME", "VALID_PASSWORD");
+
+        verify(view).goToProfile();
+    }
+
+
 }
 
 
