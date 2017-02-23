@@ -24,7 +24,10 @@ public class LoginPresenterTest {
     @Test
     public void ItTellsTheSessionManagerToCreateASessionOnLogin() {
         User expectedUser = new User();
-        UserGateway stubGateway = setupGatewayToReturn(expectedUser);
+        UserGateway stubGateway = new MockUserGatewayBuilder()
+                .setupWithCredentials("USERNAME", "PASSWORD")
+                .toReturn(expectedUser)
+                .build();
         SessionManager mockSessionManager = mock(SessionManager.class);
         LoginModel model = new LoginModel(mockSessionManager, stubGateway);
         LoginView dummyView = mock(LoginView.class);
@@ -35,19 +38,13 @@ public class LoginPresenterTest {
         verify(mockSessionManager).createSessionFor(expectedUser);
     }
 
-    private UserGateway setupGatewayToReturn(User expectedUser) {
-        UserGateway stubGateway = mock(UserGateway.class);
-        UserCredentials credentials = new UserCredentials("USERNAME", "PASSWORD");
-        when(stubGateway.getUserWithCredentials(credentials)).thenReturn(expectedUser);
-        return stubGateway;
-    }
-
     @Test
     public void ItTellsViewToGoToProfileWhenLoginIsSuccessful() {
         User expectedUser = new User();
-        UserGateway stubGateway = mock(UserGateway.class);
-        UserCredentials credentials = new UserCredentials("VALID_USERNAME", "VALID_PASSWORD");
-        when(stubGateway.getUserWithCredentials(credentials)).thenReturn(expectedUser);
+        UserGateway stubGateway = new MockUserGatewayBuilder()
+                .setupWithCredentials("VALID_USERNAME", "VALID_PASSWORD")
+                .toReturn(expectedUser)
+                .build();
         SessionManager mockSessionManager = mock(SessionManager.class);
         LoginModel model = new LoginModel(mockSessionManager, stubGateway);
         LoginView view = mock(LoginView.class);
