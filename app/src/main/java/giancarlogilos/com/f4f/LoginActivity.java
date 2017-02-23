@@ -1,5 +1,6 @@
 package giancarlogilos.com.f4f;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,18 +9,33 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import core.InMemoryUserGateway;
 import core.LoginModel;
 import core.LoginPresenter;
 import core.LoginView;
+import core.SessionManager;
+import core.UserGateway;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    private InMemoryUserGateway gateway;
-    private AndroidSessionManager sessionManager;
+    private UserGateway gateway;
+    private SessionManager sessionManager;
     private LoginModel model;
     private LoginPresenter presenter;
+
+    @BindView(R.id.username_field)
+    EditText usernameField;
+    @BindView(R.id.password_field)
+    EditText passwordField;
+    @BindView(R.id.login_button)
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +43,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        ButterKnife.bind(this);
 
         gateway = new InMemoryUserGateway();
         sessionManager = new AndroidSessionManager();
         model = new LoginModel(sessionManager, gateway);
         presenter = new LoginPresenter(model, this);
+    }
+
+    @OnClick(R.id.login_button)
+    public void onLoginClick() {
+        String username = usernameField.getText().toString();
+        String password = passwordField.getText().toString();
+        presenter.onLogin(username, password);
     }
 
     @Override
@@ -59,7 +82,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void goToProfile() {
-
+        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(i);
     }
 
     @Override
