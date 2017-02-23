@@ -5,4 +5,6 @@ package core;
  */
 public interface LoginView {
     void goToProfile();
+
+    void showFailureMessage(String message);
 }

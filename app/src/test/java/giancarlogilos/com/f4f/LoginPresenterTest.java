@@ -7,13 +7,11 @@ import core.LoginView;
 import core.LoginPresenter;
 import core.SessionManager;
 import core.User;
-import core.UserCredentials;
 import core.UserGateway;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by pofay on 2/16/17.
@@ -40,10 +38,9 @@ public class LoginPresenterTest {
 
     @Test
     public void ItTellsViewToGoToProfileWhenLoginIsSuccessful() {
-        User expectedUser = new User();
         UserGateway stubGateway = new MockUserGatewayBuilder()
                 .setupWithCredentials("VALID_USERNAME", "VALID_PASSWORD")
-                .toReturn(expectedUser)
+                .toReturn(new User())
                 .build();
         LoginView view = mock(LoginView.class);
         LoginPresenter sut = new LoginPresenterBuilder()
@@ -54,6 +51,23 @@ public class LoginPresenterTest {
         sut.onLogin("VALID_USERNAME", "VALID_PASSWORD");
 
         verify(view).goToProfile();
+    }
+
+    @Test
+    public void ItTellsViewToDisplayFailureMessageWhenLoginIsUnsuccesful() {
+        UserGateway stubGateway = new MockUserGatewayBuilder()
+                .setupWithCredentials("INVALID_USERNAME", "INVALID_PASSWORD")
+                .toReturn(new User())
+                .build();
+        LoginView view = mock(LoginView.class);
+        LoginPresenter sut = new LoginPresenterBuilder()
+                .withModel(new LoginModel(mock(SessionManager.class), stubGateway))
+                .withView(view)
+                .build();
+
+        sut.onLogin("INVALID_USERNAME", "INVALID_PASSWORD");
+
+        verify(view).showFailureMessage("Invalid Username or Password");
     }
 
 
