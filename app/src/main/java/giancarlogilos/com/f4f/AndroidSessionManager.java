@@ -1,7 +1,7 @@
 package giancarlogilos.com.f4f;
 
+import core.AuthorizationToken;
 import core.SessionManager;
-import core.User;
 
 /**
  * Created by Gilos on 2/23/2017.
@@ -9,7 +9,7 @@ import core.User;
 
 public class AndroidSessionManager implements SessionManager {
     @Override
-    public void createSessionFor(User user) {
+    public void createSessionFor(AuthorizationToken token) {
 
     }
 }

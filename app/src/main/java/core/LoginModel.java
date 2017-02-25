@@ -5,21 +5,25 @@ package core;
  */
 public class LoginModel {
 
-    private final UserGateway gateway;
+    private final AuthorizationGateway gateway;
     private final SessionManager sessionManager;
 
-    public LoginModel(SessionManager sessionManager, UserGateway gateway) {
+    public LoginModel(SessionManager sessionManager, AuthorizationGateway gateway) {
         this.sessionManager = sessionManager;
         this.gateway = gateway;
     }
 
     public void createNewSession(UserCredentials credentials, Action onSuccess, GenericAction<String> onFailure) {
-        Maybe<User> user = gateway.getUserWithCredentials(credentials);
-        if (user.hasValue()) {
-            sessionManager.createSessionFor(user.Value());
+        Maybe<AuthorizationToken> token = gateway.authorize(credentials);
+        if (token.hasValue()) {
+            sessionManager.createSessionFor(token.Value());
             onSuccess.execute();
         } else
             onFailure.execute("Invalid Username or Password");
+        /*
+        * authToken = gateway.authorize(credentials)
+        * session.createSessionFor(credentials, authToken)
+        * */
     }
 }
 

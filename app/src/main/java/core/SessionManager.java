@@ -5,5 +5,5 @@ package core;
  */
 public interface SessionManager {
 
-    void createSessionFor(User user);
+    void createSessionFor(AuthorizationToken token);
 }
