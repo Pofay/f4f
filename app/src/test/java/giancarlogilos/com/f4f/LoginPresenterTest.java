@@ -5,6 +5,8 @@ import org.junit.Test;
 import core.AuthorizationToken;
 import core.LoginModel;
 import core.LoginPresenter;
+import core.LoginView;
+import core.None;
 import core.SessionManager;
 import core.Some;
 import core.AuthorizationGateway;
@@ -35,13 +37,13 @@ public class LoginPresenterTest {
 
         verify(mockSessionManager).createSessionFor(expectedToken);
     }
-/*
+
 
     @Test
     public void ItTellsViewToGoToProfileWhenLoginIsSuccessful() {
         AuthorizationGateway stubGateway = new MockGateway()
                 .setupWithCredentials("VALID_USERNAME", "VALID_PASSWORD")
-                .toReturn(new Some<>(new User()))
+                .toReturn(new Some<>(new AuthorizationToken("7bcj")))
                 .build();
         LoginView view = mock(LoginView.class);
         LoginPresenter sut = new LoginPresenterBuilder()
@@ -70,7 +72,6 @@ public class LoginPresenterTest {
 
         verify(view).showFailureMessage("Invalid Username or Password");
     }
-*/
 
 
 }
