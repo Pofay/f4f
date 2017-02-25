@@ -6,9 +6,9 @@ import core.AuthorizationToken;
 import core.LoginModel;
 import core.LoginPresenter;
 import core.LoginView;
-import core.None;
+import utils.None;
 import core.SessionManager;
-import core.Some;
+import utils.Some;
 import core.AuthorizationGateway;
 
 import static org.junit.Assert.fail;

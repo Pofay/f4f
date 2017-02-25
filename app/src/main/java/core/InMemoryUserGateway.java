@@ -1,5 +1,9 @@
 package core;
 
+import utils.Maybe;
+import utils.None;
+import utils.Some;
+
 /**
  * Created by Gilos on 2/23/2017.
  */

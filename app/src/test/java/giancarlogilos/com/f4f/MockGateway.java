@@ -1,7 +1,7 @@
 package giancarlogilos.com.f4f;
 
 import core.AuthorizationToken;
-import core.Maybe;
+import utils.Maybe;
 import core.UserCredentials;
 import core.AuthorizationGateway;
 
