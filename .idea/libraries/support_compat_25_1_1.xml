@@ -10,7 +10,6 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://C:/Program Files (x86)/Android/android-sdk/extras/android/m2repository/com/android/support/support-compat/25.1.1/support-compat-25.1.1-sources.jar!/" />
-      <root url="jar://$USER_HOME$/Development_Tools/android-sdk-linux/extras/android/m2repository/com/android/support/support-compat/25.1.1/support-compat-25.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

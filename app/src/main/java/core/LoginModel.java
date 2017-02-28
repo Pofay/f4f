@@ -18,16 +18,9 @@ public class LoginModel {
     }
 
     public void createNewSession(UserCredentials credentials, Action onSuccess, GenericAction<String> onFailure) {
-        Maybe<AuthorizationToken> token = gateway.authorize(credentials);
-        if (token.hasValue()) {
-            sessionManager.createSessionFor(token.Value());
-            onSuccess.execute();
-        } else
-            onFailure.execute("Invalid Username or Password");
-        /*
-        * authToken = gateway.authorize(credentials)
-        * session.createSessionFor(credentials, authToken)
-        * */
+
     }
+
+
 }
 

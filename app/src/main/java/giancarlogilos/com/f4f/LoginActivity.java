@@ -21,7 +21,6 @@ import core.AuthorizationGateway;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    private AuthorizationGateway gateway;
     private SessionManager sessionManager;
     private LoginModel model;
     private LoginPresenter presenter;
@@ -41,18 +40,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        gateway = new InMemoryUserGateway();
-        sessionManager = new AndroidSessionManager();
-        model = new LoginModel(sessionManager, gateway);
-        presenter = new LoginPresenter(model, this);
     }
 
     @OnClick(R.id.login_button)
     public void onLoginClick() {
-        String username = usernameField.getText().toString();
+/*        String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         presenter.onLogin(username, password);
-    }
+ */   }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,8 +72,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void goToProfile() {
-        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+    public void goToFinder() {
+        Intent i = new Intent(getApplicationContext(), FinderActivity.class);
         startActivity(i);
     }
 

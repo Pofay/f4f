@@ -1,6 +1,5 @@
 package giancarlogilos.com.f4f;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.Button;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -50,7 +48,7 @@ public class LoginActivityAcceptanceTest {
 
         onView(withId(R.id.login_button)).perform(click());
 
-        onView(withId(R.id.profile_view)).check(matches(withText("PROFILE")));
+        onView(withId(R.id.finder_view)).check(matches(withText("FINDER")));
     }
 
     private EditText usernameField() {

@@ -53,6 +53,12 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+
 
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'

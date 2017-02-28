@@ -19,7 +19,7 @@ public class LoginPresenter {
 
     public void onLogin(String username, String password) {
         model.createNewSession(new UserCredentials(username,password),
-                () -> view.goToProfile(),
+                () -> view.goToFinder(),
                 (message) -> view.showFailureMessage(message));
     }
 }
