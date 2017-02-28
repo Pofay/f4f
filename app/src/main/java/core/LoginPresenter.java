@@ -15,11 +15,10 @@ public class LoginPresenter {
             throw new NullPointerException();
         this.model = model;
         this.view = view;
+
     }
 
     public void onLogin(String username, String password) {
-        model.createNewSession(new UserCredentials(username,password),
-                () -> view.goToFinder(),
-                (message) -> view.showFailureMessage(message));
+
     }
 }

@@ -17,7 +17,7 @@ public class LoginModel {
         this.gateway = gateway;
     }
 
-    public void createNewSession(UserCredentials credentials, Action onSuccess, GenericAction<String> onFailure) {
+    public void createNewSession(UserCredentials credentials) {
 
     }
 

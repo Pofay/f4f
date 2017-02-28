@@ -12,18 +12,16 @@ import android.widget.EditText;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import core.InMemoryUserGateway;
 import core.LoginModel;
 import core.LoginPresenter;
 import core.LoginView;
 import core.SessionManager;
-import core.AuthorizationGateway;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    private SessionManager sessionManager;
+    /*private SessionManager sessionManager;
     private LoginModel model;
-    private LoginPresenter presenter;
+    private LoginPresenter presenter;*/
 
     @BindView(R.id.username_field)
     EditText usernameField;
