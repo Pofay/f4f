@@ -19,20 +19,5 @@ import static org.mockito.Mockito.verify;
 public class LoginPresenterTest {
 
 
-  /*  @Test
-    public void WhenLoginIsSuccessfulItTellsViewToGoToProfile() {
-        AuthorizationGateway gateway = mock(AuthorizationGateway.class);
-        SessionManager manager = mock(SessionManager.class);
-        LoginModel model = new LoginModel(manager, gateway);
-        LoginView view = mock(LoginView.class);
-        LoginPresenter sut = new LoginPresenter(model, view);
 
-        doAnswer(invocation -> {
-           invocation.
-        });
-
-        sut.onLogin("USERNAME", "PASSWORD");
-
-        verify(view).goToFinder();
-    }*/
 }

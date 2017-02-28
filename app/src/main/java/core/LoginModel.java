@@ -25,12 +25,10 @@ public class LoginModel {
         gateway.authorize(this, credentials);
     }
 
-
     public void onSuccess(AuthorizationToken token) {
         sessionManager.createSessionFor(token);
         successfulLoginEvent.dispatch();
     }
-
 
     public void addOnFailureListener(DataEventListener<String> listener) {
         failedLoginEvent.addListener(listener);
