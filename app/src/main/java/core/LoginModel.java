@@ -18,7 +18,7 @@ public class LoginModel {
     }
 
     public void createNewSession(UserCredentials credentials) {
-
+        gateway.authorize(this,credentials);
     }
 
 

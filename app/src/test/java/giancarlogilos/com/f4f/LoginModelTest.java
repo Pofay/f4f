@@ -25,7 +25,7 @@ public class LoginModelTest {
 
         sut.createNewSession(credentials);
 
-        verify(gateway).authorize(credentials);
+        verify(gateway).authorize(sut, credentials);
     }
 
 
