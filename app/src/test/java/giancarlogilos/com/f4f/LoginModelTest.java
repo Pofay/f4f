@@ -42,5 +42,18 @@ public class LoginModelTest {
         verify(sessionManager).createSessionFor(expectedToken);
     }
 
+    @Test
+    public void ItShouldDispatchToAnEventListenerOnSuccesfulLogin() {
+        EventListener listener = mock(EventListener.class);
+        AuthorizationGateway gateway = mock(AuthorizationGateway.class);
+        SessionManager sessionManager = mock(SessionManager.class);
+        LoginModel sut = new LoginModel(sessionManager, gateway);
+        AuthorizationToken expectedToken = new AuthorizationToken("SOmeToken");
+
+        sut.onSuccess(expectedToken);
+
+        verify(listener).onDispatch();
+    }
+
 
 }

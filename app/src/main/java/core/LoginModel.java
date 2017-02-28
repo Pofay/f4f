@@ -1,9 +1,5 @@
 package core;
 
-import utils.Action;
-import utils.GenericAction;
-import utils.Maybe;
-
 /**
  * Created by pofay on 2/16/17.
  */
@@ -22,8 +18,8 @@ public class LoginModel {
     }
 
 
-    public void onSuccess(AuthorizationToken expectedToken) {
-
+    public void onSuccess(AuthorizationToken token) {
+        sessionManager.createSessionFor(token);
     }
 }
 
