@@ -8,10 +8,12 @@ public class LoginModel {
     private final AuthorizationGateway gateway;
     private final SessionManager sessionManager;
     private final Event successfulLoginEvent;
+    private final DataEvent<String> failedLoginEvent;
 
     public LoginModel(SessionManager sessionManager, AuthorizationGateway gateway) {
         this.sessionManager = sessionManager;
         this.gateway = gateway;
+        this.failedLoginEvent = new DataEvent<String>();
         this.successfulLoginEvent = new Event();
     }
 
@@ -31,10 +33,11 @@ public class LoginModel {
 
 
     public void addOnFailureListener(DataEventListener<String> listener) {
+        failedLoginEvent.addListener(listener);
     }
 
-    public void onFailure(String expectedMessage) {
-
+    public void onFailure(String message) {
+        failedLoginEvent.dispatch(message);
     }
 }
 
