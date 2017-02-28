@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import core.AuthorizationGateway;
 import core.AuthorizationToken;
+import core.DataEventListener;
 import core.EventListener;
 import core.LoginModel;
 import core.SessionManager;
@@ -54,6 +55,20 @@ public class LoginModelTest {
         sut.onSuccess(expectedToken);
 
         verify(listener).onDispatch();
+    }
+
+    @Test
+    public void ItShouldDispatchAnEventWithFailureMessageOnFailure(){
+        DataEventListener<String> listener = mock(DataEventListener.class);
+        AuthorizationGateway gateway = mock(AuthorizationGateway.class);
+        SessionManager sessionManager = mock(SessionManager.class);
+        LoginModel sut = new LoginModel(sessionManager, gateway);
+        sut.addOnFailureListener(listener);
+        String expectedMessage = "Failure Message";
+
+        sut.onFailure(expectedMessage);
+
+        verify(listener).onDispatch(expectedMessage);
     }
 
 

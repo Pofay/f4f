@@ -28,5 +28,13 @@ public class LoginModel {
         sessionManager.createSessionFor(token);
         successfulLoginEvent.dispatch();
     }
+
+
+    public void addOnFailureListener(DataEventListener<String> listener) {
+    }
+
+    public void onFailure(String expectedMessage) {
+
+    }
 }
 
