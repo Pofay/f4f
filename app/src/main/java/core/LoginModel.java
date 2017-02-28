@@ -22,5 +22,8 @@ public class LoginModel {
     }
 
 
+    public void onSuccess(AuthorizationToken expectedToken) {
+
+    }
 }
 
