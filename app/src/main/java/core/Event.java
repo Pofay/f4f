@@ -1,5 +1,6 @@
-package giancarlogilos.com.f4f;
+package core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +8,11 @@ import java.util.List;
  */
 
 public class Event {
-    private List<EventListener> listeners;
+    private final List<EventListener> listeners;
+
+    public Event(){
+        listeners = new ArrayList<>();
+    }
 
     public void addListener(EventListener listener) {
         listeners.add(listener);

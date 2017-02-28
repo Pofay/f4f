@@ -1,4 +1,4 @@
-package giancarlogilos.com.f4f;
+package core;
 
 /**
  * Created by Gilos on 2/28/2017.
