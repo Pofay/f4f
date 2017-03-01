@@ -13,7 +13,7 @@ public class LoginModel {
     public LoginModel(SessionManager sessionManager, AuthorizationGateway gateway) {
         this.sessionManager = sessionManager;
         this.gateway = gateway;
-        this.failedLoginEvent = new DataEvent<String>();
+        this.failedLoginEvent = new DataEvent<>();
         this.successfulLoginEvent = new Event();
     }
 

@@ -8,7 +8,6 @@ import core.LoginPresenter;
 import core.LoginView;
 import core.SessionManager;
 
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -29,6 +28,18 @@ public class LoginPresenterTest {
         sut.onLogin("USERNAME", "PASSWORD");
 
         verify(view).goToFinder();
+    }
+
+    @Test
+    public void WithAFailedAuthorization_ItShouldTellViewToShowFailureMessage() {
+        AuthorizationGateway failureGateway = new FailedAuthorizer();
+        LoginModel model = new LoginModel(mock(SessionManager.class), failureGateway);
+        LoginView view = mock(LoginView.class);
+        LoginPresenter sut = new LoginPresenter(model, view);
+
+        sut.onLogin("FAILED_USERNAME", "FAILED_PASSWORD");
+
+        verify(view).showFailureMessage("Invalid Username or Password");
     }
 
 }
