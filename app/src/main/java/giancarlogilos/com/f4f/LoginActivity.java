@@ -1,5 +1,6 @@
 package giancarlogilos.com.f4f;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,9 +20,9 @@ import core.SessionManager;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
-    /*private SessionManager sessionManager;
+    private SessionManager sessionManager;
     private LoginModel model;
-    private LoginPresenter presenter;*/
+    private LoginPresenter presenter;
 
     @BindView(R.id.username_field)
     EditText usernameField;
@@ -37,15 +38,20 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+        String accountPreferences = "accountPreferences";
+        sessionManager = new AndroidSessionManager(getApplicationContext()
+                .getSharedPreferences(accountPreferences, Context.MODE_PRIVATE));
+        model = new LoginModel(sessionManager, new SuccessGateway());
+        presenter = new LoginPresenter(model, this);
 
     }
 
     @OnClick(R.id.login_button)
     public void onLoginClick() {
-/*        String username = usernameField.getText().toString();
+        String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
         presenter.onLogin(username, password);
- */   }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

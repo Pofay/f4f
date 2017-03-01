@@ -14,10 +14,5 @@ public class VendorFinderAcceptanceTest {
     public ActivityTestRule<FinderActivity> finderRule = new ActivityTestRule<>(FinderActivity.class, true, false);
 
 
-    @Test
-    public void ItHasItsComponentsSetup(){
-
-
-    }
 
 }

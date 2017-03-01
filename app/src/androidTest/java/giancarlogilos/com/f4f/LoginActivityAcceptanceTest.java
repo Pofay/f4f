@@ -1,10 +1,13 @@
 package giancarlogilos.com.f4f;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.test.rule.ActivityTestRule;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -15,6 +18,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -36,6 +40,23 @@ public class LoginActivityAcceptanceTest {
         assertThat(loginButton(), instanceOf(Button.class));
     }
 
+    @Test
+    public void ItShouldSaveTheAccessTokenToTheSharedPreferences() {
+        loginRule.launchActivity(new Intent());
+        SharedPreferences preferences = loginRule.getActivity()
+                .getSharedPreferences("accountPreferences", Context.MODE_PRIVATE);
+        String validUsername = "VALID_USERNAME";
+        String validPassword = "VALID_PASSWORD";
+
+        onView(withId(R.id.username_field)).perform(typeText(validUsername));
+        onView(withId(R.id.password_field)).perform(typeText(validPassword));
+        onView(withId(R.id.login_button)).perform(click());
+        String actual = preferences.getString("token", "");
+
+        assertEquals("accesstoken", actual);
+    }
+
+    @Ignore
     @Test
     public void ItShouldMoveToUserProfileOnLoggingIn() {
         loginRule.launchActivity(new Intent());

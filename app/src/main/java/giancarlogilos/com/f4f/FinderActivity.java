@@ -23,7 +23,7 @@ public class FinderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vendor_finder);
         ButterKnife.bind(this);
 
-        profileView.setText("FINDER");
+        //profileView.setText("FINDER");
     }
 
     @Override
