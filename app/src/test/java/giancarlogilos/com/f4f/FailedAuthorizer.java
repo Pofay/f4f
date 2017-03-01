@@ -10,6 +10,6 @@ import core.UserCredentials;
 public class FailedAuthorizer implements AuthorizationGateway {
     @Override
     public void authorize(LoginModel model, UserCredentials credentials) {
-
+        model.onFailure("Invalid Username or Password");
     }
 }
