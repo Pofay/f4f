@@ -85,4 +85,5 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     public void showFailureMessage(String message) {
 
     }
+    // TODO: Prevent user from going back to this activity when session is created
 }
