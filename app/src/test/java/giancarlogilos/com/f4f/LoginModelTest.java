@@ -33,12 +33,12 @@ public class LoginModelTest {
 
     @Test
     public void ItShouldSaveTheAuthorizationTokenToTheSessionManagerOnSuccess() {
-        AuthorizationGateway gateway = mock(AuthorizationGateway.class);
+        AuthorizationToken expectedToken = new AuthorizationToken("SOmeToken");
+        AuthorizationGateway gateway = new SuccessfulAuthorizerWithArgs(expectedToken);
         SessionManager sessionManager = mock(SessionManager.class);
         LoginModel sut = new LoginModel(sessionManager, gateway);
-        AuthorizationToken expectedToken = new AuthorizationToken("SOmeToken");
 
-        sut.onSuccess(expectedToken);
+        sut.createNewSession(new UserCredentials("SUCCESS", "SUCCESS"));
 
         verify(sessionManager).createSessionFor(expectedToken);
     }
@@ -58,7 +58,7 @@ public class LoginModelTest {
     }
 
     @Test
-    public void ItShouldDispatchAnEventWithFailureMessageOnFailure(){
+    public void ItShouldDispatchAnEventWithFailureMessageOnFailure() {
         DataEventListener<String> listener = mock(DataEventListener.class);
         AuthorizationGateway gateway = mock(AuthorizationGateway.class);
         SessionManager sessionManager = mock(SessionManager.class);

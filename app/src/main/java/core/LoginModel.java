@@ -21,6 +21,10 @@ public class LoginModel {
         successfulLoginEvent.addListener(listener);
     }
 
+    public void addOnFailureListener(DataEventListener<String> listener) {
+        failedLoginEvent.addListener(listener);
+    }
+
     public void createNewSession(UserCredentials credentials) {
         gateway.authorize(this, credentials);
     }
@@ -28,10 +32,6 @@ public class LoginModel {
     public void onSuccess(AuthorizationToken token) {
         sessionManager.createSessionFor(token);
         successfulLoginEvent.dispatch();
-    }
-
-    public void addOnFailureListener(DataEventListener<String> listener) {
-        failedLoginEvent.addListener(listener);
     }
 
     public void onFailure(String message) {
