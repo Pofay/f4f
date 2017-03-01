@@ -56,7 +56,6 @@ public class LoginActivityAcceptanceTest {
         assertEquals("accesstoken", actual);
     }
 
-    @Ignore
     @Test
     public void ItShouldMoveToUserProfileOnLoggingIn() {
         loginRule.launchActivity(new Intent());
