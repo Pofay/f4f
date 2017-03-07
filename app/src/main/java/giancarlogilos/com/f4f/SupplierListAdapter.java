@@ -1,8 +1,5 @@
 package giancarlogilos.com.f4f;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +14,11 @@ import java.util.List;
  */
 public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapter.ViewHolder>{
     private final List<Supplier> suppliers;
-    private final Context context;
+    private final TranstionToProfileCommand command;
 
-    public SupplierListAdapter(List<Supplier> suppliers, Context owner) {
+    public SupplierListAdapter(List<Supplier> suppliers, TranstionToProfileCommand command){
         this.suppliers = suppliers;
-        this.context = owner;
+        this.command = command;
     }
 
     @Override
@@ -35,10 +32,7 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
         holder.supplierName.setText(suppliers.get(position).getName());
         holder.supplierItems.setText(String.format("Offers: %s", suppliers.get(position).itemOffers()));
         holder.supplierPicture.setOnClickListener((view) -> {
-            Intent i = new Intent(context, SupplierProfileActivity.class);
-            Bundle b = new Bundle();
-            i.putExtras(b);
-            context.startActivity(i);
+            command.goToProfileOf(suppliers.get(position));
         });
     }
 

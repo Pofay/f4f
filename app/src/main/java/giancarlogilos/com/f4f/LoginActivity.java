@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void goToFinder() {
         Intent i = new Intent(getApplicationContext(), FinderActivity.class);
+
         startActivity(i);
     }
 

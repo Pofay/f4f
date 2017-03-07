@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by Gilos on 2/23/2017.
  */
 
-public class FinderActivity extends AppCompatActivity {
+public class FinderActivity extends AppCompatActivity implements TranstionToProfileCommand {
 
     @BindView(R.id.finder_view)
     TextView profileView;
@@ -29,6 +29,7 @@ public class FinderActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class FinderActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 
         }
 
@@ -67,5 +68,12 @@ public class FinderActivity extends AppCompatActivity {
         searchView.setIconifiedByDefault(false);
 
         return true;
+    }
+
+    @Override
+    public void goToProfileOf(Supplier s) {
+        Intent i = new Intent(getApplicationContext(), SupplierProfileActivity.class);
+        i.putExtra("name", s.getName());
+        startActivity(i);
     }
 }
