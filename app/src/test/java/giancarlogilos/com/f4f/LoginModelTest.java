@@ -43,6 +43,8 @@ public class LoginModelTest {
         verify(sessionManager).createSessionFor(expectedToken);
     }
 
+    // TODO Remove these two tests since these APIs(onSuccess, onFailure) are not invoked outside the system
+    // TODO Design Principle: Test only the public API
     @Test
     public void ItShouldDispatchToAnEventListenerOnSuccesfulLogin() {
         EventListener listener = mock(EventListener.class);
