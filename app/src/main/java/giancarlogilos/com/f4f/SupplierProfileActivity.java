@@ -13,5 +13,6 @@ public class SupplierProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
         setContentView(R.layout.supplier_profile);
+
     }
 }
