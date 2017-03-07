@@ -1,13 +1,14 @@
 package giancarlogilos.com.f4f;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -16,9 +17,11 @@ import java.util.List;
  */
 public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapter.ViewHolder>{
     private final List<Supplier> suppliers;
+    private final Context context;
 
-    public SupplierListAdapter(List<Supplier> suppliers) {
+    public SupplierListAdapter(List<Supplier> suppliers, Context owner) {
         this.suppliers = suppliers;
+        this.context = owner;
     }
 
     @Override
@@ -31,8 +34,31 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.supplierName.setText(suppliers.get(position).getName());
         holder.supplierItems.setText(String.format("Offers: %s", suppliers.get(position).itemOffers()));
-        holder.
+        holder.supplierPicture.setOnClickListener((view) -> {
+            Intent i = new Intent(context, SupplierProfileActivity.class);
+            Bundle b = new Bundle();
+            i.putExtras(b);
+            context.startActivity(i);
+        });
     }
+
+
+    /*
+    * Interaction: clickHolder -> onViewUser() -> startUserProfile()
+    * Presenter:
+    *
+    *
+    *
+    * onViewUser(supplier):
+    *   view.StartUserProfile(supplier)
+    *
+    *
+    * View:
+    *
+    *    StartUserProfile(supplier):
+    *        intent = createIntentFor(supplier);
+    *        startActivity(intent)
+    * */
 
     @Override
     public int getItemCount() {

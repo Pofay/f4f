@@ -39,7 +39,7 @@ public class FinderActivity extends AppCompatActivity {
         List<Supplier> suppliers = new ArrayList<>();
         suppliers.add(new Supplier("Pofay"));
         suppliers.add(new Supplier("Pofire"));
-        adapter = new SupplierListAdapter(suppliers);
+        adapter = new SupplierListAdapter(suppliers, this);
 
         recyclerView = (RecyclerView) findViewById(R.id.supplier_recycler_view);
         recyclerView.setHasFixedSize(true);
