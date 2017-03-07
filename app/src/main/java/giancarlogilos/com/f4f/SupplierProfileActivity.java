@@ -17,8 +17,8 @@ public class SupplierProfileActivity extends AppCompatActivity {
         super.onCreate(savedState);
         setContentView(R.layout.supplier_profile);
 
-       // supplierName = (TextView) findViewById(R.id.user_profile_name);
-        //Intent i = getIntent();
-        //supplierName.setText(i.getStringExtra("name"));
+        supplierName = (TextView) findViewById(R.id.user_profile_name);
+        Intent i = getIntent();
+        supplierName.setText(i.getStringExtra("name"));
     }
 }
