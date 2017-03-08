@@ -5,12 +5,14 @@ package core;
  */
 public class SupplierFinderModel {
     private final SupplierGateway gateway;
+    private final TokenContainer tokenContainer;
 
     public SupplierFinderModel(SupplierGateway gateway, TokenContainer tokenContainer) {
         this.gateway = gateway;
+        this.tokenContainer = tokenContainer;
     }
 
     public void loadSuppliers() {
-        gateway.getSuppliers(this, "access-token");
+        gateway.getSuppliers(this, tokenContainer.getToken());
     }
 }
