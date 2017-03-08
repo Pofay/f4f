@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
     @BindView(R.id.finder_view)
     TextView profileView;
     private SupplierFinderPresenter presenter;
+    RecyclerView recyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,11 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
                 getSharedPreferences(accountPreferences, Context.MODE_PRIVATE));
         SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
         presenter = new SupplierFinderPresenter(this,model);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView = (RecyclerView) findViewById(R.id.supplier_recycler_view);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
 
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction())){
