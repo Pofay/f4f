@@ -62,6 +62,8 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
 
         }
 
+        
+
 
 
         //profileView.setText("FINDER");
