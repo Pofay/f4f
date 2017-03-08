@@ -4,22 +4,34 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import core.FilledGateway;
+import core.ProduceSupplier;
+import core.SupplierFinderModel;
+import core.SupplierFinderPresenter;
+import core.SupplierFinderView;
+import core.SupplierGateway;
+import core.TokenContainer;
 
 /**
  * Created by Gilos on 2/23/2017.
  */
 
-public class FinderActivity extends AppCompatActivity {
+public class FinderActivity extends AppCompatActivity implements SupplierFinderView{
 
     @BindView(R.id.finder_view)
     TextView profileView;
+    private SupplierFinderPresenter presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,10 +39,22 @@ public class FinderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vendor_finder);
         ButterKnife.bind(this);
 
+        List<ProduceSupplier> suppliers = new ArrayList<>();
+        suppliers.add(new ProduceSupplier());
+        suppliers.add(new ProduceSupplier());
+        SupplierGateway gateway = new FilledGateway(suppliers);
+          String accountPreferences = "accountPreferences";
+        TokenContainer tokenContainer = new TokenContainerImpl(getApplicationContext().
+                getSharedPreferences(accountPreferences, Context.MODE_PRIVATE));
+        SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
+        presenter = new SupplierFinderPresenter(this,model);
+
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction())){
 
         }
+
+
 
         //profileView.setText("FINDER");
     }
@@ -47,5 +71,10 @@ public class FinderActivity extends AppCompatActivity {
         searchView.setIconifiedByDefault(false);
 
         return true;
+    }
+
+    @Override
+    public void loadSuppliers(List<ProduceSupplier> expected) {
+
     }
 }

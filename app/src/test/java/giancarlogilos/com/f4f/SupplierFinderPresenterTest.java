@@ -15,7 +15,6 @@ import core.TokenContainer;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Gilos on 3/8/2017.
@@ -36,4 +35,6 @@ public class SupplierFinderPresenterTest {
 
         verify(view).loadSuppliers(expected);
     }
+
+
 }
