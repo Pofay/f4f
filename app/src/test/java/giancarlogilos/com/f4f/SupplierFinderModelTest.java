@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class SupplierFinderModelTest {
 
     @Test
-    public void ItShouldDelegateTheQueryingOfSuppliersToTheGateway(){
+    public void ItShouldDelegateTheQueryingOfSuppliersToTheGateway() {
         String token = "access-token";
         SupplierGateway gateway = mock(SupplierGateway.class);
         TokenContainer tokenContainer = mock(TokenContainer.class);
@@ -31,13 +31,26 @@ public class SupplierFinderModelTest {
     }
 
     @Test
-    public void ItShouldNotInvokeTheQueryOfGatewayOnConstruction(){
+    public void ItShouldNotInvokeTheQueryOfGatewayOnConstruction() {
         String token = "access-token";
         SupplierGateway gateway = mock(SupplierGateway.class);
         TokenContainer tokenContainer = mock(TokenContainer.class);
         SupplierFinderModel sut = new SupplierFinderModel(gateway, tokenContainer);
 
 
-        verify(gateway,never()).getSuppliers(sut, token);
+        verify(gateway, never()).getSuppliers(sut, token);
+    }
+
+    @Test
+    public void TriangulationTestForDifferentAccessToken() {
+        String token = "ejb7345";
+        SupplierGateway gateway = mock(SupplierGateway.class);
+        TokenContainer tokenContainer = mock(TokenContainer.class);
+        when(tokenContainer.getToken()).thenReturn(token);
+        SupplierFinderModel sut = new SupplierFinderModel(gateway, tokenContainer);
+
+        sut.loadSuppliers();
+
+        verify(gateway).getSuppliers(sut, token);
     }
 }
