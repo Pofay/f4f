@@ -27,7 +27,7 @@ public class SupplierFinderModelTest {
 
         sut.loadSuppliers();
 
-        verify(gateway).getSuppliers(sut, token);
+        verify(gateway).querySuppliers(sut, token);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class SupplierFinderModelTest {
         SupplierFinderModel sut = new SupplierFinderModel(gateway, tokenContainer);
 
 
-        verify(gateway, never()).getSuppliers(sut, token);
+        verify(gateway, never()).querySuppliers(sut, token);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class SupplierFinderModelTest {
 
         sut.loadSuppliers();
 
-        verify(gateway).getSuppliers(sut, token);
+        verify(gateway).querySuppliers(sut, token);
     }
 }
