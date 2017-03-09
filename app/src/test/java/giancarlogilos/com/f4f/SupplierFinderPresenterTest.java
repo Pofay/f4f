@@ -72,7 +72,7 @@ public class SupplierFinderPresenterTest {
 
     @Test
     public void ItShouldTellTheViewToGoToSupplierProfileOnLoadSupplierProfile() {
-        ProduceSupplier expected = new ProduceSupplier("Pofay", Arrays.asList("Food"));
+        ProduceSupplierViewModel supplier = new ProduceSupplierViewModel("Pofay", "Food,");
         SupplierGateway dummyGateway = mock(SupplierGateway.class);
         TokenContainer dummyTokenContainer = mock(TokenContainer.class);
         SupplierFinderModel model = new SupplierFinderModel(dummyGateway, dummyTokenContainer);
@@ -80,9 +80,9 @@ public class SupplierFinderPresenterTest {
         SupplierFinderPresenter sut = new SupplierFinderPresenter(view, model);
 
 
-        sut.onLoadProfileFor(expected);
+        sut.onLoadProfileFor(supplier);
 
-        verify(view).displayProfileFor(expected);
+        verify(view).displayProfileFor(supplier);
     }
 
 

@@ -8,5 +8,5 @@ import java.util.List;
 public interface SupplierFinderView {
     void displaySuppliers(List<ProduceSupplierViewModel> suppliers);
 
-    void displayProfileFor(ProduceSupplier expected);
+    void displayProfileFor(ProduceSupplierViewModel supplier);
 }

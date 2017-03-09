@@ -96,7 +96,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
     }
 
     @Override
-    public void displayProfileFor(ProduceSupplier expected) {
+    public void displayProfileFor(ProduceSupplierViewModel supplier) {
 
     }
 }

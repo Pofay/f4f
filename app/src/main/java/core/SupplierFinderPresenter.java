@@ -40,7 +40,7 @@ public class SupplierFinderPresenter {
         model.loadSuppliers();
     }
 
-    public void onLoadProfileFor(ProduceSupplier supplier) {
+    public void onLoadProfileFor(ProduceSupplierViewModel supplier) {
         view.displayProfileFor(supplier);
     }
 }
