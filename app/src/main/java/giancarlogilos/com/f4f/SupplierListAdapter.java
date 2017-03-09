@@ -7,20 +7,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.ProduceSupplier;
 import core.ProduceSupplierViewModel;
+import core.SupplierFinderPresenter;
 
 /**
  * Created by Gilos on 3/6/2017.
  */
 public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapter.ViewHolder> {
     private final List<ProduceSupplierViewModel> suppliers;
+    private final SupplierFinderPresenter presenter;
 
-    public SupplierListAdapter(List<ProduceSupplierViewModel> suppliers) {
+    public SupplierListAdapter(SupplierFinderPresenter p,List<ProduceSupplierViewModel> suppliers) {
         this.suppliers = suppliers;
+        this.presenter = p;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

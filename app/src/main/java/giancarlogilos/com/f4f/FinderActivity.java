@@ -31,7 +31,7 @@ import core.TokenContainer;
  * Created by Gilos on 2/23/2017.
  */
 
-public class FinderActivity extends AppCompatActivity implements SupplierFinderView{
+public class FinderActivity extends AppCompatActivity implements SupplierFinderView {
 
     @BindView(R.id.finder_view)
     TextView profileView;
@@ -48,8 +48,9 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
         setupPresenter();
         setUpRecyclerView();
 
+
         Intent intent = getIntent();
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 
         }
 
@@ -65,15 +66,15 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
         TokenContainer tokenContainer = new TokenContainerImpl(this.getSharedPreferences(
                 accountPreferences, Context.MODE_PRIVATE));
         SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
-        presenter = new SupplierFinderPresenter(this,model);
+        presenter = new SupplierFinderPresenter(this, model);
     }
 
     private void setUpRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.supplier_recycler_view);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-        recyclerView.setAdapter(new SupplierListAdapter(new ArrayList<>()));
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(new SupplierListAdapter(presenter, new ArrayList<>()));
     }
 
     @Override
@@ -92,7 +93,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
 
     @Override
     public void displaySuppliers(List<ProduceSupplierViewModel> suppliers) {
-        recyclerView.setAdapter(new SupplierListAdapter(suppliers));
+        recyclerView.setAdapter(new SupplierListAdapter(presenter, suppliers));
     }
 
     @Override
