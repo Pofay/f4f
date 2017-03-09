@@ -1,5 +1,8 @@
 package core;
 
+import android.support.annotation.NonNull;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,13 +17,23 @@ public class SupplierFinderPresenter {
         this.view = view;
         this.model = model;
         model.addOnSuccessListener((suppliers) -> {
-             List<ProduceSupplierViewModel> viewModels = convertToViewModelList(suppliers);
-             view.displaySuppliers(viewModels);
+            List<ProduceSupplierViewModel> viewModels = convertToViewModelList(suppliers);
+            view.displaySuppliers(viewModels);
         });
     }
 
     private List<ProduceSupplierViewModel> convertToViewModelList(List<ProduceSupplier> suppliers) {
-        return Arrays.asList();
+        List<ProduceSupplierViewModel> viewModels = new ArrayList<>();
+        for(ProduceSupplier s: suppliers){
+            ProduceSupplierViewModel viewModel = convertToViewModel(s);
+            viewModels.add(viewModel);
+        }
+        return viewModels;
+    }
+
+    @NonNull
+    private ProduceSupplierViewModel convertToViewModel(ProduceSupplier s) {
+        return new ProduceSupplierViewModel(s.getName(), s.getProductOffers());
     }
 
     public void onInitialize() {
