@@ -16,7 +16,7 @@ public class SupplierFinderPresenter {
     public SupplierFinderPresenter(SupplierFinderView view, SupplierFinderModel model) {
         this.view = view;
         this.model = model;
-        model.addOnSuccessListener((suppliers) -> {
+        this.model.addOnSuccessListener((suppliers) -> {
             List<ProduceSupplierViewModel> viewModels = convertToViewModelList(suppliers);
             view.displaySuppliers(viewModels);
         });

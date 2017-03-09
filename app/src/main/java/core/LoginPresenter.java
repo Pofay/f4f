@@ -15,8 +15,8 @@ public class LoginPresenter {
             throw new NullPointerException();
         this.model = model;
         this.view = view;
-        this.model.addOnSuccessListener(() -> view.goToFinder());
-        this.model.addOnFailureListener((message) -> view.showFailureMessage(message));
+        model.addOnSuccessListener(() -> view.goToFinder());
+        model.addOnFailureListener((message) -> view.showFailureMessage(message));
     }
 
     public void onLogin(String username, String password) {

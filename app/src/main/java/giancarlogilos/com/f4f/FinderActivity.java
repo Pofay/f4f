@@ -45,6 +45,18 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
         ButterKnife.bind(this);
 
 
+        setupPresenter();
+        setUpRecyclerView();
+
+        Intent intent = getIntent();
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
+
+        }
+
+        presenter.onInitialize();
+    }
+
+    private void setupPresenter() {
         List<ProduceSupplier> suppliers = new ArrayList<>();
         suppliers.add(new ProduceSupplier("Pofay", Arrays.asList("Food")));
         suppliers.add(new ProduceSupplier("Pofire", Arrays.asList("Beer")));
@@ -54,19 +66,14 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
                 accountPreferences, Context.MODE_PRIVATE));
         SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
         presenter = new SupplierFinderPresenter(this,model);
+    }
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+    private void setUpRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.supplier_recycler_view);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setAdapter(new SupplierListAdapter(new ArrayList<>()));
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
-
-        Intent intent = getIntent();
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-
-        }
-
-        presenter.onInitialize();
     }
 
     @Override
