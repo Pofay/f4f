@@ -7,4 +7,6 @@ import java.util.List;
  */
 public interface SupplierFinderView {
     void displaySuppliers(List<ProduceSupplier> expected);
+
+    void displayProfileFor(ProduceSupplier expected);
 }

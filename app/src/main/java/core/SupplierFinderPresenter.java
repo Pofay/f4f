@@ -16,4 +16,8 @@ public class SupplierFinderPresenter {
     public void onInitialize() {
         model.loadSuppliers();
     }
+
+    public void onLoadProfileFor(ProduceSupplier expected) {
+        view.displayProfileFor(expected);
+    }
 }

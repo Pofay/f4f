@@ -3,6 +3,7 @@ package giancarlogilos.com.f4f;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import core.FilledGateway;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.verify;
 public class SupplierFinderPresenterTest {
 
     @Test
-    public void ItShouldDisplayTheSuppliersOnInitialize(){
+    public void ItShouldDisplayTheSuppliersOnInitialize() {
         List<ProduceSupplier> expected = new ArrayList<>();
         SupplierGateway stubGateway = new FilledGateway(expected);
         TokenContainer stubTokenContainer = mock(TokenContainer.class);
@@ -34,6 +35,21 @@ public class SupplierFinderPresenterTest {
         sut.onInitialize();
 
         verify(view).displaySuppliers(expected);
+    }
+
+    @Test
+    public void ItShouldTellTheViewToGoToSupplierProfileOnLoadSupplierProfile() {
+        ProduceSupplier expected = new ProduceSupplier("Pofay", Arrays.asList("Food"));
+        SupplierGateway dummyGateway =  mock(SupplierGateway.class);
+        TokenContainer dummyTokenContainer = mock(TokenContainer.class);
+        SupplierFinderModel model = new SupplierFinderModel(dummyGateway, dummyTokenContainer);
+        SupplierFinderView view = mock(SupplierFinderView.class);
+        SupplierFinderPresenter sut = new SupplierFinderPresenter(view, model);
+
+
+        sut.onLoadProfileFor(expected);
+
+        verify(view).displayProfileFor(expected);
     }
 
 

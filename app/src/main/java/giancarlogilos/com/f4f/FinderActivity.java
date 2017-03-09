@@ -48,7 +48,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
         suppliers.add(new ProduceSupplier("Pofay", Arrays.asList("Food")));
         suppliers.add(new ProduceSupplier("Pofire", Arrays.asList("Beer")));
         SupplierGateway gateway = new FilledGateway(suppliers);
-          String accountPreferences = "accountPreferences";
+        String accountPreferences = "accountPreferences";
         TokenContainer tokenContainer = new TokenContainerImpl(this.getSharedPreferences(
                 accountPreferences, Context.MODE_PRIVATE));
         SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
@@ -85,5 +85,10 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
     @Override
     public void displaySuppliers(List<ProduceSupplier> expected) {
         recyclerView.setAdapter(new SupplierListAdapter(expected));
+    }
+
+    @Override
+    public void displayProfileFor(ProduceSupplier expected) {
+
     }
 }
