@@ -8,6 +8,7 @@ import java.util.List;
 
 import core.FilledGateway;
 import core.ProduceSupplier;
+import core.ProduceSupplierViewModel;
 import core.SupplierFinderModel;
 import core.SupplierFinderPresenter;
 import core.SupplierFinderView;
@@ -25,8 +26,9 @@ public class SupplierFinderPresenterTest {
 
     @Test
     public void ItShouldDisplayTheSuppliersOnInitialize() {
-        List<ProduceSupplier> expected = new ArrayList<>();
-        SupplierGateway stubGateway = new FilledGateway(expected);
+        List<ProduceSupplier> data = new ArrayList<>();
+        List<ProduceSupplierViewModel> expected = new ArrayList<>();
+        SupplierGateway stubGateway = new FilledGateway(data);
         TokenContainer stubTokenContainer = mock(TokenContainer.class);
         SupplierFinderModel model = new SupplierFinderModel(stubGateway, stubTokenContainer);
         SupplierFinderView view = mock(SupplierFinderView.class);

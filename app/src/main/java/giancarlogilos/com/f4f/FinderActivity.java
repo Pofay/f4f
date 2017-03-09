@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import core.FilledGateway;
 import core.ProduceSupplier;
+import core.ProduceSupplierViewModel;
 import core.SupplierFinderModel;
 import core.SupplierFinderPresenter;
 import core.SupplierFinderView;
@@ -83,8 +84,8 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
     }
 
     @Override
-    public void displaySuppliers(List<ProduceSupplier> expected) {
-        recyclerView.setAdapter(new SupplierListAdapter(expected));
+    public void displaySuppliers(List<ProduceSupplierViewModel> suppliers) {
+        recyclerView.setAdapter(new SupplierListAdapter(suppliers));
     }
 
     @Override

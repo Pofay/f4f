@@ -10,14 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import core.ProduceSupplier;
+import core.ProduceSupplierViewModel;
 
 /**
  * Created by Gilos on 3/6/2017.
  */
 public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapter.ViewHolder> {
-    private final List<ProduceSupplier> suppliers;
+    private final List<ProduceSupplierViewModel> suppliers;
 
-    public SupplierListAdapter(List<ProduceSupplier> suppliers) {
+    public SupplierListAdapter(List<ProduceSupplierViewModel> suppliers) {
         this.suppliers = suppliers;
     }
 
@@ -29,16 +30,16 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.supplierName.setText(getProduceSupplier(position).getName());
+        holder.supplierName.setText(getProduceSupplier(position).name);
         holder.supplierItems.setText(formatSupplierOffers(getProduceSupplier(position)));
     }
 
-    private ProduceSupplier getProduceSupplier(int position) {
+    private ProduceSupplierViewModel getProduceSupplier(int position) {
         return suppliers.get(position);
     }
 
-    private String formatSupplierOffers(ProduceSupplier supplier){
-        return String.format("Offers: %s", supplier.getProductOffers());
+    private String formatSupplierOffers(ProduceSupplierViewModel supplier){
+        return String.format("Offers: %s", supplier.productOffers);
     }
 
     @Override
