@@ -10,7 +10,7 @@ public class SupplierFinderPresenter {
     public SupplierFinderPresenter(SupplierFinderView view, SupplierFinderModel model) {
         this.view = view;
         this.model = model;
-        model.addOnSuccessListener((suppliers) -> view.loadSuppliers(suppliers));
+        model.addOnSuccessListener((suppliers) -> view.displaySuppliers(suppliers));
     }
 
     public void onInitialize() {

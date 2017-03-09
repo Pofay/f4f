@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,18 +43,20 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
         setContentView(R.layout.activity_vendor_finder);
         ButterKnife.bind(this);
 
+
         List<ProduceSupplier> suppliers = new ArrayList<>();
-        suppliers.add(new ProduceSupplier());
-        suppliers.add(new ProduceSupplier());
+        suppliers.add(new ProduceSupplier("Pofay", Arrays.asList("Food")));
+        suppliers.add(new ProduceSupplier("Pofire", Arrays.asList("Beer")));
         SupplierGateway gateway = new FilledGateway(suppliers);
           String accountPreferences = "accountPreferences";
-        TokenContainer tokenContainer = new TokenContainerImpl(getApplicationContext().
-                getSharedPreferences(accountPreferences, Context.MODE_PRIVATE));
+        TokenContainer tokenContainer = new TokenContainerImpl(this.getSharedPreferences(
+                accountPreferences, Context.MODE_PRIVATE));
         SupplierFinderModel model = new SupplierFinderModel(gateway, tokenContainer);
         presenter = new SupplierFinderPresenter(this,model);
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.supplier_recycler_view);
+        recyclerView.setAdapter(new SupplierListAdapter(new ArrayList<>()));
         recyclerView.setLayoutManager(manager);
         recyclerView.setHasFixedSize(true);
 
@@ -62,11 +65,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
 
         }
 
-
-
-
-
-        //profileView.setText("FINDER");
+        presenter.onInitialize();
     }
 
     @Override
@@ -84,7 +83,7 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
     }
 
     @Override
-    public void loadSuppliers(List<ProduceSupplier> expected) {
-
+    public void displaySuppliers(List<ProduceSupplier> expected) {
+        recyclerView.setAdapter(new SupplierListAdapter(expected));
     }
 }

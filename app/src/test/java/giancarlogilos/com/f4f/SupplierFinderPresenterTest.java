@@ -33,7 +33,7 @@ public class SupplierFinderPresenterTest {
 
         sut.onInitialize();
 
-        verify(view).loadSuppliers(expected);
+        verify(view).displaySuppliers(expected);
     }
 
 
