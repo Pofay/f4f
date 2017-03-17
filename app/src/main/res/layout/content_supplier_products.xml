@@ -13,4 +13,21 @@
     tools:context="giancarlogilos.com.f4f.SupplierProductsActivity"
     tools:showIn="@layout/activity_supplier_products">
 
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="24dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/products_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scrollbars="vertical" />
+
+
+    </RelativeLayout>
+
 </RelativeLayout>
