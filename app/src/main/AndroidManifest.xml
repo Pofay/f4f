@@ -30,6 +30,10 @@
         <activity
             android:name=".SupplierProfileActivity"
             android:label="Supplier Profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SupplierProductsActivity"
+            android:label="@string/title_activity_supplier_products"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

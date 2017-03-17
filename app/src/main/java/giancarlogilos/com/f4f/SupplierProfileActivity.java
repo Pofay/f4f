@@ -13,8 +13,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import core.ProduceSupplierViewModel;
+import core.SupplierFinderView;
+import core.SupplierProfilePresenter;
+import core.SupplierProfileView;
 
-public class SupplierProfileActivity extends AppCompatActivity {
+public class SupplierProfileActivity extends AppCompatActivity implements SupplierProfileView{
 
     @BindView(R.id.user_profile_photo)
     ImageButton userProfilePhotoButton;
@@ -42,6 +45,14 @@ public class SupplierProfileActivity extends AppCompatActivity {
         ProduceSupplierViewModel vm = i.getParcelableExtra("supplier");
 
         userProfileName.setText(vm.name);
+
+        SupplierProfilePresenter presenter = new SupplierProfilePresenter(this);
     }
 
+    @Override
+    public void displayAvailableItemsFor(ProduceSupplierViewModel supplier) {
+        Intent i = new Intent(this, SupplierProductsActivity.class);
+        i.putExtra("supplier", supplier);
+        startActivity(i);
+    }
 }
