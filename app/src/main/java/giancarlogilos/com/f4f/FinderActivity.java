@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,6 +99,8 @@ public class FinderActivity extends AppCompatActivity implements SupplierFinderV
 
     @Override
     public void displayProfileFor(ProduceSupplierViewModel supplier) {
-
+        Intent i = new Intent(this, SupplierProfileActivity.class);
+        i.putExtra("supplier", supplier);
+        startActivity(i);
     }
 }

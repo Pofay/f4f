@@ -1,9 +1,12 @@
 package core;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Gilos on 3/9/2017.
  */
-public class ProduceSupplierViewModel {
+public class ProduceSupplierViewModel implements Parcelable{
 
     public String productOffers;
     public String name;
@@ -11,6 +14,34 @@ public class ProduceSupplierViewModel {
     public ProduceSupplierViewModel(String name, String productOffers) {
         this.name = name;
         this.productOffers = productOffers;
+    }
+
+    protected ProduceSupplierViewModel(Parcel in) {
+        productOffers = in.readString();
+        name = in.readString();
+    }
+
+    public static final Creator<ProduceSupplierViewModel> CREATOR = new Creator<ProduceSupplierViewModel>() {
+        @Override
+        public ProduceSupplierViewModel createFromParcel(Parcel in) {
+            return new ProduceSupplierViewModel(in);
+        }
+
+        @Override
+        public ProduceSupplierViewModel[] newArray(int size) {
+            return new ProduceSupplierViewModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productOffers);
+        dest.writeString(name);
     }
 
     @Override
@@ -25,5 +56,4 @@ public class ProduceSupplierViewModel {
         else
             return false;
     }
-
 }
