@@ -1,5 +1,6 @@
 package giancarlogilos.com.f4f;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import core.ProduceSupplierViewModel;
 
 public class SupplierProfileActivity extends AppCompatActivity {
 
@@ -18,7 +20,10 @@ public class SupplierProfileActivity extends AppCompatActivity {
     ImageButton userProfilePhotoButton;
 
     @BindView(R.id.user_available_products)
-    TextView avaibleProductsText;
+    TextView availableProductsText;
+
+    @BindView(R.id.user_profile_name)
+    TextView userProfileName;
 
     @BindView(R.id.user_comments_and_reviews)
     TextView commentsAndReviews;
@@ -32,10 +37,11 @@ public class SupplierProfileActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        Intent i = getIntent();
 
+        ProduceSupplierViewModel vm = i.getParcelableExtra("supplier");
 
-
-
+        userProfileName.setText(vm.name);
     }
 
 }
