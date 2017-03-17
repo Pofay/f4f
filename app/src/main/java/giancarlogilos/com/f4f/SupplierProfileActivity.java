@@ -47,6 +47,8 @@ public class SupplierProfileActivity extends AppCompatActivity implements Suppli
         userProfileName.setText(vm.name);
 
         SupplierProfilePresenter presenter = new SupplierProfilePresenter(this);
+
+        availableProductsText.setOnClickListener((view) -> presenter.onDisplayAvailableItemsFor(vm));
     }
 
     @Override
