@@ -37,6 +37,7 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.supplierName.setText(getProduceSupplier(position).name);
         holder.supplierItems.setText(formatSupplierOffers(getProduceSupplier(position)));
+        holder.supplierName.setOnClickListener((view) -> presenter.onLoadProfileFor(getProduceSupplier(position)));
     }
 
     private ProduceSupplierViewModel getProduceSupplier(int position) {
