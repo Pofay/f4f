@@ -50,25 +50,30 @@
         android:textSize="12sp" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/product_name">
+
+        <ImageView
+            android:id="@+id/add_to_card_button"
+            android:src="@drawable/cart_icon"
+            android:layout_toRightOf="@id/product_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/product_quantity"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:hint="Quantity"
-            android:textSize="16dp"/>
 
-        <Button
-            android:id="@+id/add_to_card_button"
-            android:layout_width="wrap_content"
-            android:layout_toRightOf="@id/product_quantity"
-            android:layout_height="wrap_content"
-            android:text="Put into cart" />
+            android:hint="Quantity"
+            android:textSize="16dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" />
 
     </RelativeLayout>
 
